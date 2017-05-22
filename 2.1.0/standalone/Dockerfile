@@ -46,6 +46,9 @@ RUN ls -la /opt/hadoop/etc/hadoop/*-env.sh
 RUN chmod +x /opt/hadoop/etc/hadoop/*-env.sh
 RUN ls -la /opt/hadoop/etc/hadoop/*-env.sh
 
+# for debug
+RUN yum install -y bind-utils net-tools
+
 WORKDIR /
 
 EXPOSE 22 4040 4044 7077 8030 8031 8032 8033 8040 8042 8080 8081 8088 9000 49707 50010 50020 50070 50075 50090

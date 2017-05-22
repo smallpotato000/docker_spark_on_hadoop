@@ -1,5 +1,5 @@
 build:
-	docker build -t geostar/docker_spark_on_hadoop .
+	docker build -t geostar/dockerspark .
 
 
 

@@ -1,1 +1,1 @@
-docker run -ti --rm --dns=172.17.100.1 --name=$1 -h=$1.spark.dev.docker geostar/docker_spark_on_hadoop /etc/bootstrap.sh -bashd
+docker run -ti --rm --dns=172.17.100.1 --name=$1 -h $1.dockerspark.dev.docker --link namenode:namenode.dockerspark.dev.docker --env SPARK_LOCAL_IP=$1.dockerspark.dev.docker geostar/dockerspark /etc/bootstrap.sh -bashd
