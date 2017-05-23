@@ -1,10 +1,14 @@
 # docker_spark_on_hadoop
+* 基于centos7
+* 使用ubuntu 14.04的sshd替换了centos7原有的sshd以解决不允许UsePAM no的问题
 
 ### 前提条件
 * 已安装好[docker](www.docker.com)
 * 机器内存大于等于***8G***——主要spark比较吃内存
   * 如果使用Mac或windows，请打开virtualbox，将里面正在运行的boot2docker-vm虚拟机的内存设置到6G以上
 * 初次使用时会下载docker image文件，大约1G多，所以注意确保磁盘空间和***网络流量***
+* 修改docker0的网段为172.17.100.1/24
+  * 在docker_daemon启动时加上--bip=172.17.100.1/24
 
 ### 启动步骤
 1. git clone https://github.com/smallpotato000/docker_spark_on_hadoop.git
