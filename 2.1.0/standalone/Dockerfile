@@ -26,6 +26,7 @@ RUN rm /tmp/spark-2.1.0-bin-hadoop2.7.tgz
 RUN cd /opt && ln -s ./spark-2.1.0-bin-hadoop2.7 spark
 
 # SSH
+RUN apt-get -y update
 RUN apt-get -qq -y install openssh-server openssh-client rsync
 RUN cd /root && ssh-keygen -t dsa -P '' -f "/root/.ssh/id_dsa" \
 && cat /root/.ssh/id_dsa.pub >> /root/.ssh/authorized_keys && chmod 644 /root/.ssh/authorized_keys
