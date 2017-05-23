@@ -7,7 +7,7 @@
 * 初次使用时会下载docker image文件，大约1G多，所以注意确保磁盘空间和***网络流量***
 
 ### 启动步骤
-1. git clone https://github.com/smallpotato000/docker-node-hello.git
+1. git clone https://github.com/smallpotato000/docker_spark_on_hadoop.git
 2. cd docker_spark_on_hadoop/2.1.0/standalone
 3. 检查目录下的.sh文件是否具有执行权限（***bootstrap.sh除外***）
 4. 运行./dns-gen.sh启动dns服务
