@@ -33,6 +33,11 @@ RUN mkdir /var/run/sshd
 ADD ssh-config /root/.ssh/config
 RUN chmod 600 /root/.ssh/config
 RUN chown root:root /root/.ssh/config
+# fix ssh problem by using ubuntu's sshd
+COPY openssh_ubuntu_tgz /tmp/openssh.tgz
+RUN tar -zxf /tmp/openssh.tgz -C / --overwrite
+RUN cp /root/.ssh/id_dsa /etc/ssh/ssh_host_dsa_key
+RUN /usr/bin/ssh-keygen -A
 # fix the 254 error code
 RUN sed  -i "/^[^#]*UsePAM/ s/.*/#&/"  /etc/ssh/sshd_config
 RUN echo "UsePAM no" >> /etc/ssh/sshd_config

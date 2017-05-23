@@ -14,8 +14,7 @@ rm /tmp/*.pid
 cd $HADOOP_HOME/share/hadoop/common ; for cp in ${ACP//,/ }; do  echo == $cp; curl -LO $cp ; done; cd -
 
 #start ssh
-#systemctl enable sshd
-systemctl start sshd
+/usr/sbin/sshd
 
 if [[ $1 == "-nd" ]]; then
   cd $HADOOP_HOME
