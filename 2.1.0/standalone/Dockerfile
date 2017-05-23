@@ -58,7 +58,7 @@ ENV BOOTSTRAP /etc/bootstrap.sh
 
 # for debug
 ADD orders.csv /tmp/
-RUN yum install -y bind-utils net-tools
+RUN apt-get install -qq -y dnsutils
 
 # Container Settings
 WORKDIR /
