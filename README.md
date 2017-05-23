@@ -9,7 +9,7 @@
   * 在docker_daemon启动时加上--bip=172.17.100.1/24
 
 ### 启动步骤
-1. git clone https://github.com/smallpotato000/docker-node-hello.git
+1. git clone https://github.com/smallpotato000/docker_spark_on_hadoop.git
 2. cd docker_spark_on_hadoop/2.1.0/standalone
 3. 检查目录下的.sh文件是否具有执行权限（***bootstrap.sh除外***）
 4. 运行./dns-gen.sh启动dns服务
