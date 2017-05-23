@@ -1,4 +1,2 @@
-docker stop skydock
-docker rm skydock
-docker stop skydns
-docker rm skydns
+docker stop dns-gen
+docker rm dns-gen
