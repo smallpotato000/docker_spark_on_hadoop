@@ -1,0 +1,1 @@
+docker run -d --dns=172.17.100.1 --name=namenode -h namenode.docker -p 2122:2122 -p 4040:4040 -p 8080:8080 -p 8088:8088 -p 50070:50070 -p 16000:16000 -p 16010:16010 -p 19888:19888 geostar/dockerspark /etc/bootstrap.sh -n
