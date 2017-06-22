@@ -39,6 +39,8 @@ if [[ $1 == "-n" ]]; then
   $HADOOP_HOME/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start namenode
   $HADOOP_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start resourcemanager
   $HADOOP_HOME/sbin/mr-jobhistory-daemon.sh start historyserver --config $HADOOP_CONF_DIR
+  $HADOOP_HOME/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
+  $HADOOP_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start nodemanager
   cd $HBASE_HOME
   . $HBASE_HOME/bin/hbase-config.sh
   $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start zookeeper
@@ -58,6 +60,8 @@ if [[ $1 == "-ni" ]]; then
   $HADOOP_HOME/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start namenode
   $HADOOP_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start resourcemanager
   $HADOOP_HOME/sbin/mr-jobhistory-daemon.sh start historyserver --config $HADOOP_CONF_DIR
+  $HADOOP_HOME/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
+  $HADOOP_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start nodemanager
   cd $HBASE_HOME
   . $HBASE_HOME/bin/hbase-config.sh
   $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start zookeeper
