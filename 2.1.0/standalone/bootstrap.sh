@@ -6,7 +6,6 @@ export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 export HBASE_CONF_DIR=$HBASE_HOME/conf
 export HBASE_CLASSPATH=$HADOOP_CONF_DIR
 export HBASE_MANAGES_ZK=true
-export SPARK_MASTER_IP=namenode.docker
 export SPARK_LOCAL_IP=$(hostname)
 
 rm /tmp/*.pid
@@ -27,6 +26,7 @@ if [[ $1 == "-d" ]]; then
   . $HBASE_HOME/bin/hbase-common.sh
   $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start zookeeper
   $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start regionserver
+  $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start master-backup
   cd $SPARK_HOME
   $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$SPARK_MASTER_IP:7077 -c 2 -m 1024M
   while true; do sleep 1000; done
@@ -48,6 +48,7 @@ if [[ $1 == "-n" ]]; then
   $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start zookeeper
   $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start master
   $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start regionserver
+  $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start master-backup
   cd $SPARK_HOME
   $SPARK_HOME/sbin/start-master.sh
   $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$SPARK_MASTER_IP:7077 -c 2 -m 1024M
@@ -69,6 +70,7 @@ if [[ $1 == "-ni" ]]; then
   $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start zookeeper
   $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start master
   $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start regionserver
+  $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start master-backup
   cd $SPARK_HOME
   $SPARK_HOME/sbin/start-master.sh
   $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$SPARK_MASTER_IP:7077 -c 2 -m 1024M

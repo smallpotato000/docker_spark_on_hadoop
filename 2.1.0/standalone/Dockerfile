@@ -46,6 +46,7 @@ COPY regionservers /opt/hbase/conf/regionservers
 RUN mkdir -p /var/hadoopdata/hbasetmp && mkdir -p /var/hadoopdata/zk
 ### Spark config
 ENV SPARK_HOME /opt/spark
+ENV SPARK_MASTER_IP namenode.docker
 ### Bootstrap config
 ADD bootstrap.sh /etc/
 RUN chown root:root /etc/bootstrap.sh && chmod 700 /etc/bootstrap.sh
@@ -66,5 +67,5 @@ RUN cp /root/.ssh/id_dsa.pub /etc/ssh/ssh_host_dsa_key.pub && chmod 644 /etc/ssh
 ###SETTINGS###
 ### Container Settings
 WORKDIR /
-EXPOSE 22 2122 2181 2888 3888 4040 4044 7077 8030 8031 8032 8033 8040 8042 8080 8081 8085 8088 9000 9090 9095 16000 16010 16020 16030 49707 50010 50020 50070 50075 50090 60000 60010 60020 60030
+EXPOSE 22 2122 2181 2888 3888 4040 4044 7077 8030 8031 8032 8033 8040 8042 8080 8081 8085 8088 9000 9090 9095 16000 16010 16020 16030 16200 16300 49707 50010 50020 50070 50075 50090 60000 60010 60020 60030
 
