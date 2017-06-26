@@ -42,6 +42,7 @@ RUN chmod +x $HADOOP_HOME/etc/hadoop/*-env.sh
 ### HBase config
 ENV HBASE_HOME /opt/hbase
 COPY hbase-site.xml /opt/hbase/conf/hbase-site.xml
+COPY regionservers /opt/hbase/conf/regionservers
 RUN mkdir -p /var/hadoopdata/hbasetmp && mkdir -p /var/hadoopdata/zk
 ### Spark config
 ENV SPARK_HOME /opt/spark
@@ -65,5 +66,5 @@ RUN cp /root/.ssh/id_dsa.pub /etc/ssh/ssh_host_dsa_key.pub && chmod 644 /etc/ssh
 ###SETTINGS###
 ### Container Settings
 WORKDIR /
-EXPOSE 22 2122 2181 4040 4044 7077 8030 8031 8032 8033 8040 8042 8080 8081 8088 9000 16000 16010 49707 50010 50020 50070 50075 50090
+EXPOSE 22 2122 2181 2888 3888 4040 4044 7077 8030 8031 8032 8033 8040 8042 8080 8081 8085 8088 9000 9090 9095 16000 16010 16020 16030 49707 50010 50020 50070 50075 50090 60000 60010 60020 60030
 

@@ -13,7 +13,7 @@
 </property>
 <property>
 <name>hbase.zookeeper.quorum</name>
-<value>namenode.docker</value>
+<value>namenode.docker,d1.docker,d2.docker,d3.docker</value>
 </property>
 <property>
 <name>hbase.zookeeper.property.dataDir</name>

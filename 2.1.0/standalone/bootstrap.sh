@@ -24,9 +24,9 @@ if [[ $1 == "-d" ]]; then
   $HADOOP_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start nodemanager
   cd $HBASE_HOME
   . $HBASE_HOME/bin/hbase-config.sh
-  $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start zookeeper
-  $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start regionserver
-  $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start master-backup
+  . $HBASE_HOME/bin/hbase-common.sh
+  $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start zookeeper
+  $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start regionserver
   cd $SPARK_HOME
   $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$SPARK_MASTER_IP:7077 -c 2 -m 1024M
   while true; do sleep 1000; done
@@ -41,12 +41,13 @@ if [[ $1 == "-n" ]]; then
   $HADOOP_HOME/sbin/mr-jobhistory-daemon.sh start historyserver --config $HADOOP_CONF_DIR
   $HADOOP_HOME/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
   $HADOOP_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start nodemanager
+  $HADOOP_HOME/bin/hdfs dfs -mkdir /hbase
   cd $HBASE_HOME
   . $HBASE_HOME/bin/hbase-config.sh
-  $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start zookeeper
-  $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start master
-  $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start regionserver
-  $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start master-backup
+  . $HBASE_HOME/bin/hbase-common.sh
+  $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start zookeeper
+  $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start master
+  $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start regionserver
   cd $SPARK_HOME
   $SPARK_HOME/sbin/start-master.sh
   $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$SPARK_MASTER_IP:7077 -c 2 -m 1024M
@@ -64,10 +65,10 @@ if [[ $1 == "-ni" ]]; then
   $HADOOP_HOME/sbin/yarn-daemon.sh --config $HADOOP_CONF_DIR start nodemanager
   cd $HBASE_HOME
   . $HBASE_HOME/bin/hbase-config.sh
-  $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start zookeeper
-  $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start master
-  $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start regionserver
-  $HBASE_HOME/bin/hbase-daemon.sh --config "${HBASE_CONF_DIR}" start master-backup
+  . $HBASE_HOME/bin/hbase-common.sh
+  $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start zookeeper
+  $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start master
+  $HBASE_HOME/bin/hbase-daemon.sh --config $HBASE_CONF_DIR start regionserver
   cd $SPARK_HOME
   $SPARK_HOME/sbin/start-master.sh
   $SPARK_HOME/bin/spark-class org.apache.spark.deploy.worker.Worker spark://$SPARK_MASTER_IP:7077 -c 2 -m 1024M
